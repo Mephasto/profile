@@ -1,0 +1,24 @@
+{
+    "name": "cv-nicolas-gonzalez",
+    "version": "1.0.0",
+    "description": "Portfolio personal de Nicolás Alejandro González - Desarrollador Web Full Stack",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "keywords": [
+        "portfolio",
+        "nextjs",
+        "react",
+        "web-developer"
+    ],
+    "author": "Nicolás Alejandro González",
+    "license": "MIT",
+    "dependencies": {
+        "next": "^14.2.0",
+        "react": "^18.3.0",
+        "react-dom": "^18.3.0"
+    }
+}
