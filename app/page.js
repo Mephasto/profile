@@ -1,12 +1,31 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { translations } from "./translations";
 
 export default function Home() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("hero");
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [language, setLanguage] = useState("en");
 
     useEffect(() => {
+        // Check localStorage for dark mode preference
+        const savedMode = localStorage.getItem("darkMode");
+        if (savedMode === "true") {
+            setIsDarkMode(true);
+            document.documentElement.classList.add("dark-mode");
+        }
+
+        // Check localStorage for language preference
+        const savedLanguage = localStorage.getItem("language");
+        if (
+            savedLanguage &&
+            (savedLanguage === "en" || savedLanguage === "es")
+        ) {
+            setLanguage(savedLanguage);
+        }
+
         const handleScroll = () => {
             const sections = [
                 "hero",
@@ -31,6 +50,25 @@ export default function Home() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+        if (!isDarkMode) {
+            document.documentElement.classList.add("dark-mode");
+            localStorage.setItem("darkMode", "true");
+        } else {
+            document.documentElement.classList.remove("dark-mode");
+            localStorage.setItem("darkMode", "false");
+        }
+    };
+
+    const toggleLanguage = () => {
+        const newLanguage = language === "en" ? "es" : "en";
+        setLanguage(newLanguage);
+        localStorage.setItem("language", newLanguage);
+    };
+
+    const t = translations[language];
+
     const scrollToSection = (sectionId) => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -44,7 +82,7 @@ export default function Home() {
             {/* Navigation */}
             <nav className="navbar">
                 <div className="container">
-                    <div className="nav-brand">NAG</div>
+                    <div className="nav-brand">{t.nav.brand}</div>
                     <ul className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
                         <li>
                             <a
@@ -53,7 +91,7 @@ export default function Home() {
                                     activeSection === "hero" ? "active" : ""
                                 }
                             >
-                                Inicio
+                                {t.nav.home}
                             </a>
                         </li>
                         <li>
@@ -63,7 +101,7 @@ export default function Home() {
                                     activeSection === "about" ? "active" : ""
                                 }
                             >
-                                Sobre Mí
+                                {t.nav.about}
                             </a>
                         </li>
                         <li>
@@ -73,7 +111,7 @@ export default function Home() {
                                     activeSection === "skills" ? "active" : ""
                                 }
                             >
-                                Habilidades
+                                {t.nav.skills}
                             </a>
                         </li>
                         <li>
@@ -85,7 +123,7 @@ export default function Home() {
                                         : ""
                                 }
                             >
-                                Experiencia
+                                {t.nav.experience}
                             </a>
                         </li>
                         <li>
@@ -95,7 +133,7 @@ export default function Home() {
                                     activeSection === "projects" ? "active" : ""
                                 }
                             >
-                                Proyectos
+                                {t.nav.projects}
                             </a>
                         </li>
                         <li>
@@ -105,17 +143,35 @@ export default function Home() {
                                     activeSection === "contact" ? "active" : ""
                                 }
                             >
-                                Contacto
+                                {t.nav.contact}
                             </a>
                         </li>
                     </ul>
-                    <div
-                        className={`hamburger ${isMenuOpen ? "active" : ""}`}
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    >
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <div className="nav-actions">
+                        <button
+                            className="language-toggle"
+                            onClick={toggleLanguage}
+                            aria-label="Toggle language"
+                        >
+                            {language === "en" ? "ES" : "EN"}
+                        </button>
+                        <button
+                            className="theme-toggle"
+                            onClick={toggleDarkMode}
+                            aria-label="Toggle dark mode"
+                        >
+                            <i
+                                className={`fas ${isDarkMode ? "fa-sun" : "fa-moon"}`}
+                            ></i>
+                        </button>
+                        <div
+                            className={`hamburger ${isMenuOpen ? "active" : ""}`}
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        >
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -124,31 +180,25 @@ export default function Home() {
             <section id="hero" className="hero">
                 <div className="hero-content">
                     <h1 className="hero-title">
-                        <span className="greeting">Hola, soy</span>
-                        <span className="name">Nicolás Alejandro González</span>
+                        <span className="greeting">{t.hero.greeting}</span>
+                        <span className="name">{t.hero.name}</span>
                     </h1>
                     <p className="hero-subtitle">
-                        <span className="typing-text">
-                            Socio Ejecutivo en IT Partner | Desarrollador &
-                            Diseñador
-                        </span>
+                        <span className="typing-text">{t.hero.subtitle}</span>
                     </p>
-                    <p className="hero-description">
-                        Mezclando pasiones por el IT, software y diseño de
-                        organizaciones
-                    </p>
+                    <p className="hero-description">{t.hero.description}</p>
                     <div className="hero-buttons">
                         <button
                             onClick={() => scrollToSection("contact")}
                             className="btn btn-primary"
                         >
-                            Contactar
+                            {t.hero.contactButton}
                         </button>
                         <button
                             onClick={() => scrollToSection("projects")}
                             className="btn btn-secondary"
                         >
-                            Ver Proyectos
+                            {t.hero.projectsButton}
                         </button>
                     </div>
                     <div className="social-links">
@@ -184,50 +234,29 @@ export default function Home() {
             {/* About Section */}
             <section id="about" className="about">
                 <div className="container">
-                    <h2 className="section-title">Sobre Mí</h2>
+                    <h2 className="section-title">{t.about.title}</h2>
                     <div className="about-content">
                         <div className="about-text">
-                            <p className="lead">
-                                Socio ejecutivo en IT Partner, combinando mi
-                                pasión por la tecnología, el desarrollo de
-                                software y el diseño organizacional para crear
-                                soluciones que realmente funcionen.
-                            </p>
-                            <p>
-                                Con más de 18 años de experiencia en la
-                                industria, he trabajado desde diseño web y
-                                desarrollo frontend hasta la creación de
-                                visualizaciones de datos complejas. Mi
-                                trayectoria incluye empresas reconocidas como
-                                Gameloft, Etermax y Socialmetrix, donde he
-                                aplicado mi enfoque multidisciplinario que
-                                combina diseño, desarrollo y gestión.
-                            </p>
-                            <p>
-                                Mi formación en Arte Multimedial y Diseño me
-                                permite abordar los desafíos tecnológicos con
-                                una perspectiva creativa única. Creo en la
-                                organización efectiva tanto de código como de
-                                equipos humanos, buscando siempre la mejor
-                                sinergia entre computadoras y personas.
-                            </p>
+                            <p className="lead">{t.about.lead}</p>
+                            <p>{t.about.paragraph1}</p>
+                            <p>{t.about.paragraph2}</p>
                             <div className="about-stats">
                                 <div className="stat-item">
                                     <span className="stat-number">18+</span>
                                     <span className="stat-label">
-                                        Años de Experiencia
+                                        {t.about.stats.experience}
                                     </span>
                                 </div>
                                 <div className="stat-item">
                                     <span className="stat-number">50+</span>
                                     <span className="stat-label">
-                                        Proyectos Completados
+                                        {t.about.stats.projects}
                                     </span>
                                 </div>
                                 <div className="stat-item">
-                                    <span className="stat-number">12</span>
+                                    <span className="stat-number">30+</span>
                                     <span className="stat-label">
-                                        Años en IT Partner
+                                        {t.about.stats.clients}
                                     </span>
                                 </div>
                             </div>
@@ -253,12 +282,13 @@ export default function Home() {
             {/* Skills Section */}
             <section id="skills" className="skills">
                 <div className="container">
-                    <h2 className="section-title">Habilidades Técnicas</h2>
+                    <h2 className="section-title">{t.skills.title}</h2>
                     <div className="skills-grid">
                         {/* Frontend */}
                         <div className="skill-category">
                             <h3>
-                                <i className="fas fa-code"></i> Frontend
+                                <i className="fas fa-code"></i>{" "}
+                                {t.skills.categories.frontend}
                             </h3>
                             <div className="skill-items">
                                 <SkillBar name="HTML5 & CSS3" progress={95} />
@@ -278,7 +308,8 @@ export default function Home() {
                         {/* Backend */}
                         <div className="skill-category">
                             <h3>
-                                <i className="fas fa-server"></i> Backend
+                                <i className="fas fa-server"></i>{" "}
+                                {t.skills.categories.backend}
                             </h3>
                             <div className="skill-items">
                                 <SkillBar name="Node.js" progress={85} />
@@ -291,11 +322,11 @@ export default function Home() {
                             </div>
                         </div>
 
-                        {/* Tools & Others */}
+                        {/* Design */}
                         <div className="skill-category">
                             <h3>
-                                <i className="fas fa-tools"></i> Herramientas &
-                                Desarrollo
+                                <i className="fas fa-palette"></i>{" "}
+                                {t.skills.categories.design}
                             </h3>
                             <div className="skill-items">
                                 <SkillBar name="Git & GitHub" progress={88} />
@@ -352,131 +383,56 @@ export default function Home() {
             {/* Experience Section */}
             <section id="experience" className="experience">
                 <div className="container">
-                    <h2 className="section-title">Experiencia Profesional</h2>
+                    <h2 className="section-title">{t.experience.title}</h2>
                     <div className="timeline">
                         <TimelineItem
-                            title="Socio Ejecutivo"
-                            company="IT Partner"
-                            date="Enero 2014 - Presente"
-                            description={[
-                                "Liderazgo estratégico y operativo de la empresa",
-                                "Diseño y desarrollo de soluciones tecnológicas integrales",
-                                "Gestión de equipos multidisciplinarios",
-                                "Arquitectura de software y diseño organizacional",
-                                "Consultoría en transformación digital",
-                            ]}
-                            technologies={[
-                                "React",
-                                "Node.js",
-                                "AWS",
-                                "Design Thinking",
-                            ]}
+                            title={t.experience.itpartner.title}
+                            company={t.experience.itpartner.company}
+                            date={t.experience.itpartner.date}
+                            description={t.experience.itpartner.description}
+                            technologies={t.experience.itpartner.technologies}
                         />
 
                         <TimelineItem
-                            title="Desarrollador de Software Freelance"
-                            company="Independiente"
-                            date="Mayo 2013 - Presente"
-                            description={[
-                                "Desarrollo de aplicaciones web y móviles para diversos clientes",
-                                "Diseño de interfaces de usuario y experiencia",
-                                "Consultoría técnica y arquitectura de software",
-                                "Proyectos de desarrollo full stack",
-                            ]}
-                            technologies={[
-                                "JavaScript",
-                                "React",
-                                "Node.js",
-                                "UI/UX",
-                            ]}
+                            title={t.experience.socialmetrix.title}
+                            company={t.experience.socialmetrix.company}
+                            date={t.experience.socialmetrix.date}
+                            description={t.experience.socialmetrix.description}
+                            technologies={
+                                t.experience.socialmetrix.technologies
+                            }
                         />
 
                         <TimelineItem
-                            title="UI & Data Visualization"
-                            company="Socialmetrix"
-                            date="Abril 2012 - Junio 2013"
-                            description={[
-                                "Desarrollo de interfaces de usuario para análisis de datos",
-                                "Creación de visualizaciones de datos complejas e interactivas",
-                                "Diseño de dashboards y reportes analíticos",
-                                "Trabajo con grandes volúmenes de datos en tiempo real",
-                            ]}
-                            technologies={[
-                                "D3.js",
-                                "JavaScript",
-                                "Data Visualization",
-                                "UI Design",
-                            ]}
+                            title={t.experience.gameloft.title}
+                            company={t.experience.gameloft.company}
+                            date={t.experience.gameloft.date}
+                            description={t.experience.gameloft.description}
+                            technologies={t.experience.gameloft.technologies}
                         />
 
                         <TimelineItem
-                            title="Diseñador Web"
-                            company="Etermax S.A."
-                            date="Octubre 2011 - Mayo 2012"
-                            description={[
-                                "Diseño de interfaces web y mobile apps",
-                                "Creación de experiencias de usuario para aplicaciones móviles",
-                                "Diseño UI para juegos y aplicaciones interactivas",
-                                "Colaboración con equipos de desarrollo y producto",
-                            ]}
-                            technologies={[
-                                "HTML/CSS",
-                                "JavaScript",
-                                "Mobile UI",
-                                "Photoshop",
-                            ]}
+                            title={t.experience.etermax.title}
+                            company={t.experience.etermax.company}
+                            date={t.experience.etermax.date}
+                            description={t.experience.etermax.description}
+                            technologies={t.experience.etermax.technologies}
                         />
 
                         <TimelineItem
-                            title="Diseñador Web"
-                            company="Gameloft"
-                            date="Octubre 2009 - Octubre 2011"
-                            description={[
-                                "Diseño de micrositios para iPhone y PC dedicados a juegos",
-                                "Colaboración con el portal principal de Gameloft",
-                                "Diseño de shops y sitios promocionales",
-                                "Creación de assets digitales para múltiples plataformas",
-                            ]}
-                            technologies={[
-                                "HTML/CSS",
-                                "JavaScript",
-                                "Flash",
-                                "Adobe Creative Suite",
-                            ]}
+                            title={t.experience.freelance.title}
+                            company={t.experience.freelance.company}
+                            date={t.experience.freelance.date}
+                            description={t.experience.freelance.description}
+                            technologies={t.experience.freelance.technologies}
                         />
 
                         <TimelineItem
-                            title="Diseñador Web y Programador Freelance"
-                            company="Independiente"
-                            date="Enero 2007 - Octubre 2009"
-                            description={[
-                                "Trabajos independientes de diseño web y programación",
-                                "Desarrollo de sitios web para pequeñas y medianas empresas",
-                                "Diseño de identidad digital y branding online",
-                            ]}
-                            technologies={[
-                                "HTML/CSS",
-                                "JavaScript",
-                                "PHP",
-                                "MySQL",
-                            ]}
-                        />
-
-                        <TimelineItem
-                            title="Diseñador Web, Programador"
-                            company="Ideas 2"
-                            date="Enero 2004 - Diciembre 2007"
-                            description={[
-                                "Diseño de sitios web para PyMEs argentinas y españolas",
-                                "Desarrollo de módulo administrador de contenido (CMS)",
-                                "Programación y diseño de soluciones web personalizadas",
-                            ]}
-                            technologies={[
-                                "HTML/CSS",
-                                "JavaScript",
-                                "PHP",
-                                "CMS",
-                            ]}
+                            title={t.experience.ideas2.title}
+                            company={t.experience.ideas2.company}
+                            date={t.experience.ideas2.date}
+                            description={t.experience.ideas2.description}
+                            technologies={t.experience.ideas2.technologies}
                         />
                     </div>
                 </div>
@@ -485,12 +441,28 @@ export default function Home() {
             {/* Projects Section */}
             <section id="projects" className="projects">
                 <div className="container">
-                    <h2 className="section-title">Proyectos Destacados</h2>
+                    <h2 className="section-title">{t.projects.title}</h2>
                     <div className="projects-grid">
                         <ProjectCard
-                            icon="fa-chart-line"
-                            title="Data Visualization Platform"
-                            description="Plataforma de visualización de datos para análisis de social media en Socialmetrix. Dashboards interactivos con métricas en tiempo real."
+                            image="/images/pfm.png"
+                            title={t.projects.paperforge.title}
+                            description={t.projects.paperforge.description}
+                            technologies={[
+                                "Next.js",
+                                "TypeScript",
+                                "PostgreSQL",
+                                "Prisma",
+                                "Vercel",
+                                "AWS",
+                            ]}
+                            link="https://www.paperforgeminis.com"
+                            linkText={t.projects.viewSite}
+                        />
+
+                        <ProjectCard
+                            image="/images/socialmetrix.png"
+                            title={t.projects.dataViz.title}
+                            description={t.projects.dataViz.description}
                             technologies={[
                                 "D3.js",
                                 "JavaScript",
@@ -501,8 +473,8 @@ export default function Home() {
 
                         <ProjectCard
                             icon="fa-gamepad"
-                            title="Gaming Microsites"
-                            description="Diseño y desarrollo de micrositios promocionales para juegos de Gameloft y Etermax. Experiencias interactivas multiplataforma."
+                            title={t.projects.gaming.title}
+                            description={t.projects.gaming.description}
                             technologies={[
                                 "HTML/CSS",
                                 "JavaScript",
@@ -512,9 +484,9 @@ export default function Home() {
                         />
 
                         <ProjectCard
-                            icon="fa-building"
-                            title="IT Partner Solutions"
-                            description="Soluciones tecnológicas integrales para empresas, desde desarrollo de software hasta diseño organizacional y transformación digital."
+                            image="/images/itpartner.png"
+                            title={t.projects.itpartnerProj.title}
+                            description={t.projects.itpartnerProj.description}
                             technologies={[
                                 "React",
                                 "Node.js",
@@ -525,8 +497,8 @@ export default function Home() {
 
                         <ProjectCard
                             icon="fa-mobile-alt"
-                            title="UI/UX Design Projects"
-                            description="Diseño de interfaces para aplicaciones web y móviles. Portfolio de proyectos para startups y empresas establecidas en Argentina y España."
+                            title={t.projects.uiux.title}
+                            description={t.projects.uiux.description}
                             technologies={[
                                 "UI/UX",
                                 "Photoshop",
@@ -541,17 +513,15 @@ export default function Home() {
             {/* Contact Section */}
             <section id="contact" className="contact">
                 <div className="container">
-                    <h2 className="section-title">Contacto</h2>
-                    <p className="contact-subtitle">
-                        ¿Tienes un proyecto en mente? ¡Hablemos!
-                    </p>
+                    <h2 className="section-title">{t.contact.title}</h2>
+                    <p className="contact-subtitle">{t.contact.subtitle}</p>
 
                     <div className="contact-content">
                         <div className="contact-info">
                             <div className="contact-item">
                                 <i className="fas fa-envelope"></i>
                                 <div>
-                                    <h4>Email</h4>
+                                    <h4>{t.contact.email}</h4>
                                     <a href="mailto:nicdakka@gmail.com">
                                         nicdakka@gmail.com
                                     </a>
@@ -560,8 +530,8 @@ export default function Home() {
                             <div className="contact-item">
                                 <i className="fas fa-map-marker-alt"></i>
                                 <div>
-                                    <h4>Ubicación</h4>
-                                    <p>Buenos Aires, Argentina</p>
+                                    <h4>{t.contact.location}</h4>
+                                    <p>{t.contact.locationValue}</p>
                                 </div>
                             </div>
                             <div className="contact-item">
@@ -579,7 +549,7 @@ export default function Home() {
                             </div>
                         </div>
 
-                        <ContactForm />
+                        <ContactForm t={t.contact.form} />
                     </div>
                 </div>
             </section>
@@ -665,11 +635,30 @@ function TimelineItem({ title, company, date, description, technologies }) {
 }
 
 // Componente ProjectCard
-function ProjectCard({ icon, title, description, technologies }) {
+function ProjectCard({
+    icon,
+    title,
+    description,
+    technologies,
+    link,
+    image,
+    linkText,
+}) {
     return (
         <div className="project-card">
-            <div className="project-image">
-                <i className={`fas ${icon}`}></i>
+            <div
+                className="project-image"
+                style={
+                    image
+                        ? {
+                              backgroundImage: `url(${image})`,
+                              backgroundSize: "cover",
+                              backgroundPosition: "center",
+                          }
+                        : {}
+                }
+            >
+                {!image && <i className={`fas ${icon}`}></i>}
             </div>
             <div className="project-content">
                 <h3>{title}</h3>
@@ -681,13 +670,26 @@ function ProjectCard({ icon, title, description, technologies }) {
                         </span>
                     ))}
                 </div>
+                {link && (
+                    <div className="project-links">
+                        <a
+                            href={link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-link"
+                        >
+                            <i className="fas fa-external-link-alt"></i>{" "}
+                            {linkText || "View Site"}
+                        </a>
+                    </div>
+                )}
             </div>
         </div>
     );
 }
 
 // Componente ContactForm
-function ContactForm() {
+function ContactForm({ t }) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -714,7 +716,7 @@ function ContactForm() {
     return (
         <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-                <label htmlFor="name">Nombre</label>
+                <label htmlFor="name">{t.name}</label>
                 <input
                     type="text"
                     id="name"
@@ -725,7 +727,7 @@ function ContactForm() {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t.email}</label>
                 <input
                     type="email"
                     id="email"
@@ -736,7 +738,7 @@ function ContactForm() {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="subject">Asunto</label>
+                <label htmlFor="subject">{t.subject}</label>
                 <input
                     type="text"
                     id="subject"
@@ -747,7 +749,7 @@ function ContactForm() {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="message">Mensaje</label>
+                <label htmlFor="message">{t.message}</label>
                 <textarea
                     id="message"
                     name="message"
@@ -758,7 +760,7 @@ function ContactForm() {
                 ></textarea>
             </div>
             <button type="submit" className="btn btn-primary">
-                Enviar Mensaje
+                {t.send}
             </button>
         </form>
     );
