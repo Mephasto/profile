@@ -14,7 +14,7 @@ export const translations = {
     hero: {
       greeting: "Hi, I'm",
       name: "Nicolás Alejandro González",
-      subtitle: "Team Developer at IT Partner | Developer & Designer",
+      subtitle: "Fullstack Developer | UX/UI Designer",
       description: "Mixing passions for software and organizational design",
       contactButton: "Contact",
       projectsButton: "View Projects",
@@ -204,7 +204,7 @@ export const translations = {
     hero: {
       greeting: "Hola, soy",
       name: "Nicolás Alejandro González",
-      subtitle: "Team Developer en IT Partner | Desarrollador & Diseñador",
+      subtitle: "Fullstack Developer | UX/UI Designer",
       description:
         "Mezclando pasiones por el software y diseño de organizaciones",
       contactButton: "Contactar",
