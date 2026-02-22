@@ -329,7 +329,7 @@ export default function Home() {
                             </h3>
                             <div className="skill-items">
                                 <SkillBar name="Node.js" progress={85} />
-                                <SkillBar name="TypeScript" progress={90} />
+                                <SkillBar name="TypeScript" progress={85} />
                                 <SkillBar
                                     name="Prisma (Mongo, PostgreSQL)"
                                     progress={82}
