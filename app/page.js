@@ -348,7 +348,7 @@ export default function Home() {
                             <div className="skill-items">
                                 <SkillBar name="Git & GitHub" progress={88} />
                                 <SkillBar
-                                    name="Vibe coding enthusiast"
+                                    name="Vibe Coding Enthusiast"
                                     progress={85}
                                 />
                                 <SkillBar name="Next.js" progress={85} />
