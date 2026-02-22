@@ -328,8 +328,8 @@ export default function Home() {
                                 {t.skills.categories.backend}
                             </h3>
                             <div className="skill-items">
-                                <SkillBar name="TypeScript" progress={90} />
                                 <SkillBar name="Node.js" progress={85} />
+                                <SkillBar name="TypeScript" progress={90} />
                                 <SkillBar name="AWS" progress={80} />
                                 <SkillBar
                                     name="Prisma (Mongo, PostgreSQL)"
