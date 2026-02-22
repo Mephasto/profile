@@ -299,6 +299,19 @@ export default function Home() {
             <section id="skills" className="skills">
                 <div className="container">
                     <h2 className="section-title">{t.skills.title}</h2>
+                    <p
+                        style={{
+                            textAlign: "center",
+                            color: "var(--accents-5)",
+                            fontSize: "0.875rem",
+                            maxWidth: "600px",
+                            margin: "0 auto 3rem",
+                            lineHeight: "1.6",
+                            whiteSpace: "pre-line",
+                        }}
+                    >
+                        {t.skills.disclaimer}
+                    </p>
                     <div className="skills-grid">
                         {/* Frontend */}
                         <div className="skill-category">
@@ -328,14 +341,14 @@ export default function Home() {
                                 {t.skills.categories.backend}
                             </h3>
                             <div className="skill-items">
-                                <SkillBar name="Node.js" progress={85} />
+                                <SkillBar name="Node.js" progress={90} />
                                 <SkillBar name="TypeScript" progress={85} />
                                 <SkillBar
                                     name="Prisma (Mongo, PostgreSQL)"
                                     progress={82}
                                 />
                                 <SkillBar name="Linux / DevOps" progress={75} />
-                                <SkillBar name="AWS" progress={80} />
+                                <SkillBar name="AWS" progress={75} />
                             </div>
                         </div>
 
@@ -351,11 +364,15 @@ export default function Home() {
                                     name="Vibe Coding enthusiast"
                                     progress={85}
                                 />
-                                <SkillBar name="Next.js" progress={85} />
+                                <SkillBar
+                                    name="Continuous Deployment"
+                                    progress={85}
+                                />
                                 <SkillBar
                                     name="Responsive Design"
                                     progress={95}
                                 />
+                                <SkillBar name="Agile style" progress={85} />
                             </div>
                         </div>
 
@@ -367,19 +384,22 @@ export default function Home() {
                             </h3>
                             <div className="skill-items">
                                 <SkillBar
-                                    name="Team Leadership"
+                                    name="Organizational Design"
                                     progress={92}
                                 />
                                 <SkillBar
-                                    name="Organizational Design"
+                                    name="Team Leadership"
                                     progress={90}
                                 />
-                                <SkillBar name="Management" progress={88} />
+                                <SkillBar
+                                    name="Entrepreneurship"
+                                    progress={85}
+                                />
                                 <SkillBar
                                     name="International Business"
                                     progress={85}
                                 />
-                                <SkillBar name="Agile / Scrum" progress={85} />
+                                <SkillBar name="Management" progress={88} />
                             </div>
                         </div>
 

@@ -38,6 +38,8 @@ export const translations = {
         // Skills Section
         skills: {
             title: "Skills",
+            disclaimer:
+                "These bars don't represent something specific, it can be either interest or confidence level,\nsince experience and skills have no ceiling",
             categories: {
                 frontend: "Frontend Development",
                 backend: "Backend & Tools",
@@ -245,6 +247,8 @@ export const translations = {
         // Skills Section
         skills: {
             title: "Habilidades",
+            disclaimer:
+                "Estas barras no representan algo en específico, puede ser tanto interés como nivel de confianza,\nya que la experiencia y las skills no tienen techo",
             categories: {
                 frontend: "Desarrollo Frontend",
                 backend: "Backend & Herramientas",
