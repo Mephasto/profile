@@ -314,7 +314,7 @@ export default function Home() {
                                 />
                                 <SkillBar name="React.js" progress={85} />
                                 <SkillBar
-                                    name="D3.js / Data Viz"
+                                    name="Data Visualization"
                                     progress={88}
                                 />
                                 <SkillBar name="UI/UX Design" progress={90} />
