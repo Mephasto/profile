@@ -277,7 +277,10 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
-                        <div className="about-image">
+                        <div
+                            className="about-image"
+                            style={{ position: "relative" }}
+                        >
                             <img
                                 src="/images/photo.jpeg"
                                 alt="Nicolás Alejandro González"
@@ -290,6 +293,29 @@ export default function Home() {
                                         "0 20px 60px rgba(59, 130, 246, 0.3)",
                                 }}
                             />
+                            <div
+                                className="photo-info-popover"
+                                style={{
+                                    position: "absolute",
+                                    top: "10px",
+                                    right: "10px",
+                                    width: "24px",
+                                    height: "24px",
+                                    borderRadius: "50%",
+                                    backgroundColor: "var(--primary-color)",
+                                    color: "white",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    fontSize: "14px",
+                                    fontWeight: "bold",
+                                    cursor: "help",
+                                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
+                                }}
+                                title={t.photoApology}
+                            >
+                                i
+                            </div>
                         </div>
                     </div>
                 </div>

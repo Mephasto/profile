@@ -46,6 +46,8 @@ export const translations = {
                 design: "Design & Productivity",
             },
         },
+        // About Section - Photo
+        photoApology: "Sorry for not having a more recent photo...",
         // Experience Section
         experience: {
             title: "Work Experience",
@@ -255,6 +257,8 @@ export const translations = {
                 design: "Diseño & Productividad",
             },
         },
+        // About Section - Photo
+        photoApology: "Perdón por no tener una foto más actual...",
         // Experience Section
         experience: {
             title: "Experiencia Laboral",
