@@ -489,56 +489,6 @@ section {
     box-shadow: var(--shadow-medium);
 }
 
-/* Photo Info Popover */
-.photo-info-popover {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background-color: var(--geist-success);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: help;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease;
-    z-index: 10;
-}
-
-.photo-info-popover:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.photo-info-popover::after {
-    content: attr(title);
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 8px;
-    padding: 8px 12px;
-    background: var(--geist-foreground);
-    color: var(--geist-background);
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: normal;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-    box-shadow: var(--shadow-medium);
-    z-index: 1000;
-}
-
-.photo-info-popover:hover::after {
-    opacity: 1;
-}
-
 /* Skills Section */
 .skills {
     background: var(--accents-1);
@@ -1092,7 +1042,6 @@ section {
     .footer-links,
     .about-image,
     .about-stats,
-    .photo-info-popover,
     .skills,
     .project-image {
         display: none !important;
