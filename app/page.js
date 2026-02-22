@@ -330,12 +330,12 @@ export default function Home() {
                             <div className="skill-items">
                                 <SkillBar name="Node.js" progress={85} />
                                 <SkillBar name="TypeScript" progress={90} />
-                                <SkillBar name="AWS" progress={80} />
                                 <SkillBar
                                     name="Prisma (Mongo, PostgreSQL)"
                                     progress={82}
                                 />
                                 <SkillBar name="Linux / DevOps" progress={75} />
+                                <SkillBar name="AWS" progress={80} />
                             </div>
                         </div>
 
