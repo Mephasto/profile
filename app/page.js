@@ -342,12 +342,12 @@ export default function Home() {
                             </h3>
                             <div className="skill-items">
                                 <SkillBar name="Node.js" progress={90} />
-                                <SkillBar name="TypeScript" progress={85} />
+                                <SkillBar name="TypeScript" progress={70} />
                                 <SkillBar
                                     name="Prisma (Mongo, PostgreSQL)"
                                     progress={82}
                                 />
-                                <SkillBar name="Linux / DevOps" progress={75} />
+                                <SkillBar name="Linux / DevOps" progress={90} />
                                 <SkillBar name="AWS" progress={75} />
                             </div>
                         </div>
@@ -355,15 +355,12 @@ export default function Home() {
                         {/* Design */}
                         <div className="skill-category">
                             <h3>
-                                <i className="fas fa-palette"></i>{" "}
+                                <i className="fas fa-rocket"></i>{" "}
                                 {t.skills.categories.design}
                             </h3>
                             <div className="skill-items">
                                 <SkillBar name="Git & GitHub" progress={88} />
-                                <SkillBar
-                                    name="Vibe Coding enthusiast"
-                                    progress={85}
-                                />
+                                <SkillBar name="Vibe Coding" progress={95} />
                                 <SkillBar
                                     name="Continuous Deployment"
                                     progress={85}
@@ -388,7 +385,7 @@ export default function Home() {
                                     progress={92}
                                 />
                                 <SkillBar
-                                    name="Team Leadership"
+                                    name="Process Automation"
                                     progress={90}
                                 />
                                 <SkillBar
@@ -399,7 +396,7 @@ export default function Home() {
                                     name="International Business"
                                     progress={85}
                                 />
-                                <SkillBar name="Management" progress={88} />
+                                <SkillBar name="Management" progress={78} />
                             </div>
                         </div>
 
