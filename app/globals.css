@@ -1041,6 +1041,7 @@ section {
     .contact-form,
     .footer-links,
     .about-image,
+    .about-stats,
     .skills,
     .project-image {
         display: none !important;
@@ -1101,19 +1102,6 @@ section {
 
     .about-content {
         gap: 1rem;
-    }
-
-    .about-stats {
-        margin-top: 0.5rem;
-        gap: 1rem;
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-around;
-    }
-
-    .stat-item {
-        flex: 1;
-        text-align: center;
     }
 
     .about-text p {
