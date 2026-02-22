@@ -52,7 +52,7 @@ export const translations = {
                 company: "IT Partner",
                 date: "2014 - Present",
                 description: [
-                    "Full-stack development and complex technical architecture",
+                    "Full-stack development of modern technical architecture",
                     "Digital solutions consulting and strategic advisory for clients",
                     "Strategic leadership in organizational design and technology transformation",
                 ],
@@ -259,7 +259,7 @@ export const translations = {
                 company: "IT Partner",
                 date: "2014 - Presente",
                 description: [
-                    "Desarrollo full-stack y arquitectura técnica compleja",
+                    "Desarrollo full-stack de arquitectura técnica moderna",
                     "Consultoría de soluciones digitales y asesoramiento estratégico para clientes",
                     "Liderazgo estratégico en diseño organizacional y transformación tecnológica",
                 ],
