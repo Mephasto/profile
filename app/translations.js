@@ -41,7 +41,7 @@ export const translations = {
             categories: {
                 frontend: "Frontend Development",
                 backend: "Backend & Tools",
-                design: "Design & Creative",
+                design: "Design & Productivity",
             },
         },
         // Experience Section
@@ -248,7 +248,7 @@ export const translations = {
             categories: {
                 frontend: "Desarrollo Frontend",
                 backend: "Backend & Herramientas",
-                design: "Diseño & Creatividad",
+                design: "Diseño & Productividad",
             },
         },
         // Experience Section
